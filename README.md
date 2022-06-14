@@ -1,5 +1,5 @@
 # watchstreet-scrapers
-Pulls gray market data that powers watchsctreet.io
+Crawls gray market websites for watch price data.
 
 ## Installing dependencies 
 - `python -m venv venv`
