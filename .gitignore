@@ -1,4 +1,3 @@
 venv
 output.*
-**/__pycache__/
-crown_and_caliber/crown_and_caliber/spiders/__pycache__
+**/__pycache__
