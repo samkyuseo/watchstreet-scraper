@@ -68,12 +68,15 @@ class JSONOutputParser:
             except Exception as e:
                 print(f'Error: {e}, {watch.get("url", None)}')
 
-    def export_to_file(self, parsed_data_dir="parsed_ouputs/parsed_output.json"):
-        with open(parsed_data_dir, "w") as f:
-            if f != None:
-                json.dump(self.parsed_data, f)
+    def upload_to_firebase(self, parsed_data_dir="parsed_ouputs/parsed_output.json"):
+        # loop through each key 
+        # check if key exists inside the database 
+        # if it doesn't, add the whole object 
+        # else, find it, and just add the price objects.
+        for id, watch in self.parsed_data.items(): 
 
-    def export_to_database(self, parsed_data_dir="parsed_outputs/parsed_output.json"):
+
+    def export_to_file(self, parsed_data_dir="parsed_outputs/parsed_output.json"):
         with open(parsed_data_dir) as f:
             if f != None:
                 pass
@@ -82,7 +85,8 @@ class JSONOutputParser:
 def main():
     op = JSONOutputParser("outputs/output.json")
     op.parse()
-    op.export()
+    # op.export_to_file()
+    op.upload_to_firebase()
 
 
 if __name__ == "__main__":
