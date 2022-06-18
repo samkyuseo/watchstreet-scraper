@@ -69,12 +69,13 @@ class JSONOutputParser:
                 print(f'Error: {e}, {watch.get("url", None)}')
 
     def upload_to_firebase(self, parsed_data_dir="parsed_ouputs/parsed_output.json"):
-        # loop through each key 
-        # check if key exists inside the database 
-        # if it doesn't, add the whole object 
+        # if it doesn't, add the whole object
         # else, find it, and just add the price objects.
-        for id, watch in self.parsed_data.items(): 
-
+        # loop through each key
+        for id, watch in self.parsed_data.items():
+            # check if key exists inside the database
+            # doc_ref = db.collection(u''
+            pass
 
     def export_to_file(self, parsed_data_dir="parsed_outputs/parsed_output.json"):
         with open(parsed_data_dir) as f:
