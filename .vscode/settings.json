@@ -1,9 +1,8 @@
 {
-    "workbench.colorTheme": "GitHub Dark Default",
-    "workbench.iconTheme": "vscode-great-icons",
-    "editor.fontSize": 15,
-    "window.zoomLevel": 1,
-    "python.formatting.provider": "black",
-    "editor.formatOnSave": true,
+  "workbench.colorTheme": "poimandres",
+  "workbench.iconTheme": "vscode-great-icons",
+  "editor.fontSize": 12,
+  "window.zoomLevel": 0,
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": true
 }
-  

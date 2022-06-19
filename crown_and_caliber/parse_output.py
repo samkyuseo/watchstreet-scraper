@@ -4,87 +4,93 @@ from typing import Dict, List
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+from pathlib import Path
 
-# Use a service account
-cred = credentials.Certificate("service_account.json")
-firebase_admin.initialize_app(cred)
-
-db = firestore.client()
+import os
 
 
 class JSONOutputParser:
-    raw_data_dir: str
-    parsed_data_dir: str
+    cwd = Path(os.getcwd())
+    service_account = cwd / "service_account.json"
+    output_dir = cwd / "outputs"
+    raw_data_file = output_dir / "raw_output.json"
+    parsed_data_file = output_dir / "parsed_output.json"
 
     raw_data: List[Dict]
     parsed_data: Dict = {}
 
-    def __init__(
-        self,
-        raw_data_dir="outputs/output.json",
-    ):
-        self.raw_data_dir = raw_data_dir
-        with open(raw_data_dir, "r") as f:
-            if f != None:
-                self.raw_data = json.load(f)
+    db: firestore._FirestoreClient
+
+    def __init__(self):
+        try:
+            # Use a service account
+            cred = credentials.Certificate(self.service_account)
+            firebase_admin.initialize_app(cred)
+            self.db = firestore.client()
+
+            with open(self.raw_data_file, "r") as f:
+                if f != None:
+                    self.raw_data = json.load(f)
+        except Exception as e:
+            print(f"Parser Init Error: {e}")
 
     def parse(self):
         for watch in self.raw_data:
-            try:
-                key = watch["brand"].lower() + watch["reference"].lower()
-                # Values tied to reference number
-                if self.parsed_data.get(key) == None:
-                    self.parsed_data[key] = {
-                        "model": watch.get("model", None),
-                        "nickname": watch.get("nickname", None),
-                        "case_size": watch.get("case_size", None),
-                        "movement": watch.get("movement", None),
-                        "caliber": watch.get("caliber", None),
-                        "power_reserve": watch.get("power_reserve", None),
-                        "gender": watch.get("gender", None),
-                        "lug_width": watch.get("lug_width", None),
-                        "max._wrist_size": watch.get("max._wrist_size", None),
-                        "case_thickness": watch.get("case_thickness", None),
-                        "price_data": [],
-                    }
-                self.parsed_data[key]["price_data"].append(
-                    {
-                        "price": watch.get("price", None),
-                        "date": watch.get("date", None),
-                        "condition": watch.get("condition", None),
-                        "url": watch.get("url", None),
-                        "box": watch.get("box", None),
-                        "paper": watch.get("paper", None),
-                        "manual": watch.get("manual", None),
-                        "paper_date": watch.get("paper_date", None),
-                        "approximate_age": watch.get("approximate_age", None),
-                        "dial_color": watch.get("dial_color", None),
-                        "year": watch.get("year", None),
-                        "case_material": watch.get("case_material", None),
-                        "bracelet": watch.get("bracelet", None),
-                        "case_back": watch.get("case_back", None),
-                    }
-                )
-            except Exception as e:
-                print(f'Error: {e}, {watch.get("url", None)}')
+            if watch.get("brand") is None or watch.get("reference") is None:
+                continue
+
+            key = watch["brand"].lower() + watch["reference"].lower()
+            # Values tied to reference number
+            if self.parsed_data.get(key) == None:
+                self.parsed_data[key] = {
+                    "brand": watch["brand"],
+                    "reference": watch.get("reference"),
+                    "model": watch.get("model"),
+                    "nickname": watch.get("nickname"),
+                    "case_size": watch.get("case_size"),
+                    "movement": watch.get("movement"),
+                    "caliber": watch.get("caliber"),
+                    "power_reserve": watch.get("power_reserve"),
+                    "gender": watch.get("gender"),
+                    "lug_width": watch.get("lug_width"),
+                    "max._wrist_size": watch.get("max._wrist_size"),
+                    "case_thickness": watch.get("case_thickness"),
+                    "price_data": [],
+                }
+            self.parsed_data[key]["price_data"].append(
+                {
+                    "price": watch.get("price"),
+                    "date": watch.get("date"),
+                    "condition": watch.get("condition"),
+                    "url": watch.get("url"),
+                    "box": watch.get("box"),
+                    "paper": watch.get("paper"),
+                    "manual": watch.get("manual"),
+                    "paper_date": watch.get("paper_date"),
+                    "approximate_age": watch.get("approximate_age"),
+                    "dial_color": watch.get("dial_color"),
+                    "year": watch.get("year"),
+                    "case_material": watch.get("case_material"),
+                    "bracelet": watch.get("bracelet"),
+                    "case_back": watch.get("case_back"),
+                }
+            )
+
+    def export_to_file(self):
+
+        with open(self.parsed_data_file, "w") as f:
+            if f != None:
+                json.dump(self.parsed_data, f)
 
     def upload_to_firebase(self, parsed_data_dir="parsed_ouputs/parsed_output.json"):
-        # if it doesn't, add the whole object
-        # else, find it, and just add the price objects.
-        # loop through each key
+        watches_ref = self.db.collection("watches")
         for id, watch in self.parsed_data.items():
-            # check if key exists inside the database
-            # doc_ref = db.collection(u''
-            pass
-
-    def export_to_file(self, parsed_data_dir="parsed_outputs/parsed_output.json"):
-        with open(parsed_data_dir) as f:
-            if f != None:
-                pass
+            doc_ref = watches_ref.document(id)
+            doc_ref.set(watch)
 
 
 def main():
-    op = JSONOutputParser("outputs/output.json")
+    op = JSONOutputParser()
     op.parse()
     # op.export_to_file()
     op.upload_to_firebase()
