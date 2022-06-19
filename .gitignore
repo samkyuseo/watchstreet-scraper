@@ -1,6 +1,4 @@
 venv
 **/outputs/*.json
-# **/parsed_outputs/*.json
-**/failed_outputs/*.json
 **/__pycache__
 **/service_account.json
