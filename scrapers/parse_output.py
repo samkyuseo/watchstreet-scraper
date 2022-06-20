@@ -1,3 +1,4 @@
+import os
 import json
 from typing import Dict, List
 
@@ -6,15 +7,16 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 from pathlib import Path
 
-import os
+# Firestore samples: https://cloud.google.com/firestore/docs/samples/
+# Firestore how to guides: https://cloud.google.com/firestore/docs/how-to
 
 
 class JSONOutputParser:
     cwd = Path(os.getcwd())
     service_account = cwd / "service_account.json"
     output_dir = cwd / "outputs"
-    raw_data_file = output_dir / "raw_output.json"
-    parsed_data_file = output_dir / "parsed_output.json"
+    raw_data_file = output_dir / "rolex_raw_output.json"
+    parsed_data_file = output_dir / "rolex_parsed_output.json"
 
     raw_data: List[Dict]
     parsed_data: Dict = {}
@@ -45,7 +47,7 @@ class JSONOutputParser:
             if watch.get("brand") is None or watch.get("reference") is None:
                 continue
 
-            key = watch["brand"].lower() + watch["reference"].lower()
+            key = watch["brand"].lower().replace(" ", "_") + watch["reference"].lower()
             # Values tied to reference number
             if self.parsed_data.get(key) == None:
                 self.parsed_data[key] = {
@@ -115,13 +117,14 @@ class JSONOutputParser:
                         doc_ref.update({f"{spec}": watch[spec]})
                         print(f"{id}: {spec} was null. Replaced with {watch[spec]}")
             else:
-                print("we should never be here")
+                print(f"Setting new watch: {watch}")
                 doc_ref.set(watch)
 
 
 def main():
     op = JSONOutputParser()
     op.parse()
+    # op.export_to_file()
     op.upload_to_firebase()
 
 

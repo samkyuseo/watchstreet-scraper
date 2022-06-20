@@ -1,8 +1,7 @@
 {
-  "workbench.colorTheme": "poimandres",
-  "workbench.iconTheme": "vscode-great-icons",
-  "editor.fontSize": 12,
-  "window.zoomLevel": 0,
+  "editor.fontSize": 13,
   "python.formatting.provider": "black",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "python.terminal.activateEnvironment": true,
+  "json.maxItemsComputed": 100000
 }

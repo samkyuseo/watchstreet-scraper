@@ -1,17 +1,33 @@
 import scrapy
 from datetime import datetime
+import logging
+from scrapy.utils.log import configure_logging
 
 
 class RolexSpider(scrapy.Spider):
     name = "rolex"
-    start_urls = [f"https://www.crownandcaliber.com/collections/rolex-watches"]
+    start_urls = [f"https://www.crownandcaliber.com/pages/brands"]
     user_agent = "Mozilla/5.0 (X11; Linux x86_64; rv:48.0) Gecko/20100101 Firefox/48.0"
-    page = 100  # some arbitrary big amount
+    page = 50  # some arbitrary big amount
+
+    configure_logging(install_root_handler=False)
+    logging.basicConfig(
+        filename=f"logs/log-{datetime.today().strftime('%Y-%m-%d')}.txt",
+        format="%(levelname)s: %(message)s",
+        level=logging.INFO,
+    )
 
     def parse(self, response):
+        brands = response.css("a.brand-list--link::attr('href')").getall()
+        for brand in brands:
+            yield response.follow(
+                f"https://www.crownandcaliber.com{brand}", callback=self.parse_brands
+            )
+
+    def parse_brands(self, response):
         for i in range(1, self.page):
             yield response.follow(
-                f"https://www.crownandcaliber.com/collections/rolex-watches?page={i}",
+                f"{response.request.url}?page={i}",
                 callback=self.parse_page,
             )
 

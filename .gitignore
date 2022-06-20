@@ -2,3 +2,4 @@ venv
 **/outputs/*.json
 **/__pycache__
 **/service_account.json
+**/logs/*.txt
