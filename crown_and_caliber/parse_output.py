@@ -21,7 +21,12 @@ class JSONOutputParser:
 
     db: firestore._FirestoreClient
 
-    def __init__(self):
+    def __init__(self) -> None:
+        """Initialize a JSON Parser object
+
+        1. Initialize connection to firestore
+        2. Create raw_data dictionary from raw data json file
+        """
         try:
             # Use a service account
             cred = credentials.Certificate(self.service_account)
@@ -34,7 +39,8 @@ class JSONOutputParser:
         except Exception as e:
             print(f"Parser Init Error: {e}")
 
-    def parse(self):
+    def parse(self) -> None:
+        """Parse raw data and save it as a python dict member variable."""
         for watch in self.raw_data:
             if watch.get("brand") is None or watch.get("reference") is None:
                 continue
@@ -76,23 +82,46 @@ class JSONOutputParser:
                 }
             )
 
-    def export_to_file(self):
-
+    def export_to_file(self) -> None:
+        """Export parsed output to a file."""
         with open(self.parsed_data_file, "w") as f:
             if f != None:
                 json.dump(self.parsed_data, f)
 
-    def upload_to_firebase(self, parsed_data_dir="parsed_ouputs/parsed_output.json"):
+    def upload_to_firebase(self) -> None:
+        """Upload parsed watch data to firebase.
+
+        1. If it a new watch, then upload everything (specs + price data)
+        2. If we've already seen it
+            - Just update the price data array with unique price data points
+            - Check for any null specs and try to hydrate
+        """
         watches_ref = self.db.collection("watches")
         for id, watch in self.parsed_data.items():
             doc_ref = watches_ref.document(id)
-            doc_ref.set(watch)
+            if doc_ref.get().exists:
+                # Only adds unique price_data objects, if not unique, doesn't add them
+                doc_ref.update(
+                    {"price_data": firestore.ArrayUnion(watch["price_data"])}
+                )
+                # Check for any null fields that is not price data and hydrate them
+                watch_specs = doc_ref.get().to_dict()
+                for spec, value in watch_specs.items():
+                    if (
+                        spec != "price_data"
+                        and value is None
+                        and watch[spec] is not None
+                    ):
+                        doc_ref.update({f"{spec}": watch[spec]})
+                        print(f"{id}: {spec} was null. Replaced with {watch[spec]}")
+            else:
+                print("we should never be here")
+                doc_ref.set(watch)
 
 
 def main():
     op = JSONOutputParser()
     op.parse()
-    # op.export_to_file()
     op.upload_to_firebase()
 
 
