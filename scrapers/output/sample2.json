@@ -1,0 +1,147 @@
+{
+  "id": 6732565381195,
+  "title": "TAG Heuer Monaco Steve McQueen CW2113-0",
+  "handle": "tag-heuer-monaco-cw2113-0-10-10-tag-0tqnld",
+  "description": "This pre-owned TAG Heuer Monaco CW2113-0 watch is in excellent condition. During our quality control check, any necessary adjustments are made to ensure the watch is functioning as intended. The watch is Crown \u0026amp; Caliber Certified Authentic and comes backed by our 2-year warranty.",
+  "published_at": "2022-06-16T14:01:39-04:00",
+  "created_at": "2022-06-16T14:01:35-04:00",
+  "vendor": "TAG Heuer",
+  "type": "Watch - Pre-Owned",
+  "tags": [
+    "approximate_age:2000s",
+    "band_materials:Stainless Steel",
+    "bezel_materials:Stainless Steel",
+    "box:Box",
+    "brand_name:TAG Heuer",
+    "case_back:Solid",
+    "case_materials:Stainless Steel",
+    "case_size:38",
+    "case_thickness:13.0",
+    "cn0::This TAG Heuer Monaco Steve McQueen CW2113-0 is in overall excellent pre-owned condition with some light patina forming on the minute hand.",
+    "condition:Excellent",
+    "crystal_material:Acrylic",
+    "current_price:number:4250",
+    "dial_color:Blue",
+    "display_type:Analog",
+    "gender:men",
+    "manual:Manual",
+    "max_wrist_size:7",
+    "model_name:Monaco",
+    "movement_type:Automatic",
+    "power_reserve:42",
+    "pre-owned",
+    "serial_number:DR3614"
+  ],
+  "price": 425000,
+  "price_min": 425000,
+  "price_max": 425000,
+  "available": true,
+  "price_varies": false,
+  "compare_at_price": null,
+  "compare_at_price_min": 0,
+  "compare_at_price_max": 0,
+  "compare_at_price_varies": false,
+  "variants": [
+    {
+      "id": 39786996498507,
+      "title": "Default Title",
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null,
+      "sku": "10-10-TAG-0TQNLD",
+      "requires_shipping": true,
+      "taxable": true,
+      "featured_image": null,
+      "available": true,
+      "name": "TAG Heuer Monaco Steve McQueen CW2113-0",
+      "public_title": null,
+      "options": ["Default Title"],
+      "price": 425000,
+      "weight": 0,
+      "compare_at_price": null,
+      "inventory_quantity": 1,
+      "inventory_management": "shopify",
+      "inventory_policy": "deny",
+      "barcode": null,
+      "requires_selling_plan": false,
+      "selling_plan_allocations": []
+    }
+  ],
+  "images": [
+    "//cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-e62fbb68d0eb_6e9316d3-69f3-4d93-9800-ea64484edfa3.jpg?v=1655402542",
+    "//cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-2d3c3775ca35_30a27943-fb8c-4dc6-993d-4056e3b27609.jpg?v=1655402542",
+    "//cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-22e7c0b0b652_6ac0da8e-88cd-4452-9c12-81bdb0a37c83.jpg?v=1655402542",
+    "//cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-13f98a739049_5428cc11-a9f5-4287-856b-aa224d8651b6.jpg?v=1655402542"
+  ],
+  "featured_image": "//cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-e62fbb68d0eb_6e9316d3-69f3-4d93-9800-ea64484edfa3.jpg?v=1655402542",
+  "options": [{ "name": "Title", "position": 1, "values": ["Default Title"] }],
+  "url": "/products/tag-heuer-monaco-cw2113-0-10-10-tag-0tqnld",
+  "media": [
+    {
+      "alt": null,
+      "id": 21320631550027,
+      "position": 1,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 3000,
+        "width": 3000,
+        "src": "https://cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-e62fbb68d0eb_6e9316d3-69f3-4d93-9800-ea64484edfa3.jpg?v=1655402542"
+      },
+      "aspect_ratio": 1.0,
+      "height": 3000,
+      "media_type": "image",
+      "src": "https://cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-e62fbb68d0eb_6e9316d3-69f3-4d93-9800-ea64484edfa3.jpg?v=1655402542",
+      "width": 3000
+    },
+    {
+      "alt": null,
+      "id": 21320631582795,
+      "position": 2,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 3000,
+        "width": 3000,
+        "src": "https://cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-2d3c3775ca35_30a27943-fb8c-4dc6-993d-4056e3b27609.jpg?v=1655402542"
+      },
+      "aspect_ratio": 1.0,
+      "height": 3000,
+      "media_type": "image",
+      "src": "https://cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-2d3c3775ca35_30a27943-fb8c-4dc6-993d-4056e3b27609.jpg?v=1655402542",
+      "width": 3000
+    },
+    {
+      "alt": null,
+      "id": 21320631615563,
+      "position": 3,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 3000,
+        "width": 3000,
+        "src": "https://cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-22e7c0b0b652_6ac0da8e-88cd-4452-9c12-81bdb0a37c83.jpg?v=1655402542"
+      },
+      "aspect_ratio": 1.0,
+      "height": 3000,
+      "media_type": "image",
+      "src": "https://cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-22e7c0b0b652_6ac0da8e-88cd-4452-9c12-81bdb0a37c83.jpg?v=1655402542",
+      "width": 3000
+    },
+    {
+      "alt": null,
+      "id": 21320631648331,
+      "position": 4,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 3000,
+        "width": 3000,
+        "src": "https://cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-13f98a739049_5428cc11-a9f5-4287-856b-aa224d8651b6.jpg?v=1655402542"
+      },
+      "aspect_ratio": 1.0,
+      "height": 3000,
+      "media_type": "image",
+      "src": "https://cdn.shopify.com/s/files/1/0146/0732/products/TAG-Heuer-Monaco-CW2113-0-10-10-TAG-0TQNLD-13f98a739049_5428cc11-a9f5-4287-856b-aa224d8651b6.jpg?v=1655402542",
+      "width": 3000
+    }
+  ],
+  "requires_selling_plan": false,
+  "selling_plan_groups": []
+}
