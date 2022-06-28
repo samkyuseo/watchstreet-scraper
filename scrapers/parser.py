@@ -151,7 +151,6 @@ class JSONOutputParser:
                     res = doc_ref.update(
                         {"price_data": firestore.ArrayUnion(watch["price_data"])}
                     )
-                    logging.debug(f"Tried to add watch {id}. Results: {res}")
                     # Check for any null fields that is not price data and hydrate them
                     watch_specs = doc_ref.get().to_dict()
                     for spec, value in watch_specs.items():
