@@ -148,7 +148,7 @@ class JSONOutputParser:
                 if doc_ref.get().exists:
                     logging.debug(f"Watch {id} already exists.")
                     # Only adds unique price_data objects, if not unique, doesn't add them
-                    res = doc_ref.update(
+                    doc_ref.update(
                         {"price_data": firestore.ArrayUnion(watch["price_data"])}
                     )
                     # Check for any null fields that is not price data and hydrate them
